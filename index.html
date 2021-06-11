@@ -41,8 +41,10 @@
             Matriz B: <input class="dataMatrixInput sizeM_matrixB" type="number" value="1" min="1" id=""> x <input class="dataMatrixInput sizeN_matrixB" type="number" value="1" min="1" id="">
             <button type="button" id="btngenerateValuesInputInterface" class="btn btn-primary btn-sm">Generar entradas</button>
         </p>
-        <div class="matrixA"><p>Matriz A:</p></div>
-        <div class="matrixB"><p>Matriz B:</p></div>
+        <p>Matriz A:</p>
+        <div class="matrixA"></div>
+        <p>Matriz B:</p>
+        <div class="matrixB"></div>
         <div class="calculus">
             <p>Operación: 
                 <select id="operation">
@@ -52,6 +54,7 @@
                     <!-- <option value="">Inversa de A</option>
                     <option value="">Inversa de B</option> -->
                 </select>
+                <button type="button" id="btnCalculate" class="btn btn-primary btn-sm">CALCULAR</button>
             </p>
         </div>
 
