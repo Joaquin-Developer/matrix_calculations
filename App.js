@@ -50,7 +50,11 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
 }, { once: true })
 
 function calculate() {
-    getMatrixValues(divMatrixA)
+    const valuesMatrixA = getMatrixValues(divMatrixA);
+    const valuesMatrixB = getMatrixValues(divMatrixB);
+    
+
+
 }
 
 /**
