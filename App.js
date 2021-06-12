@@ -25,6 +25,7 @@ function generateValuesInputInterface(divMatrix, mSize, nSize) {
     const M = parseInt(mSize);   // rows
     const N = parseInt(nSize);   // columns
     const table = document.createElement("table");
+    table.classList.add("CurveBorder");
 
     for (let i = 0; i < M; i++) {
         const row = document.createElement("tr");

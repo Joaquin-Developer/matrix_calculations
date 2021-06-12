@@ -6,3 +6,29 @@
 }
 
 .contactLink { color: #fff; }
+
+.matrixContainer {
+    border-radius: 60px;
+    box-sizing: border-box;
+    width: 50%;
+    border-left: solid #000 5px;
+    border-right: solid #000 5px;
+    padding: 5px;
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.CurveBorder {
+    /* border-style: solid; */
+    /* box-sizing: border-box;
+    border-style: solid;
+    border-radius: 60px; */
+    display: table-cell;
+}
+
+
