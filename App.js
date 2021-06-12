@@ -1,13 +1,13 @@
-// > < 
 const divMatrixA = document.getElementsByClassName("matrixA")[0]
 const divMatrixB = document.getElementsByClassName("matrixB")[0]
+const selectOperation = document.getElementById("operation")
 
 const sizeM_A = document.getElementsByClassName("sizeM_matrixA")[0]
 const sizeM_B = document.getElementsByClassName("sizeM_matrixB")[0]
 const sizeN_A = document.getElementsByClassName("sizeN_matrixA")[0]
 const sizeN_B = document.getElementsByClassName("sizeN_matrixB")[0]
 
-addEventListener("load", (event) => { })
+// addEventListener("load", (event) => { })
 
 document.getElementById("btngenerateValuesInputInterface")
 .addEventListener("click", (event) => {
@@ -45,16 +45,28 @@ function generateValuesInputInterface(divMatrix, mSize, nSize) {
 }
 
 document.getElementById("btnCalculate").addEventListener("click", (event) => {
-    event.preventDefault()
-    calculate()
-}, { once: true })
-
-function calculate() {
+    event.preventDefault();
     const valuesMatrixA = getMatrixValues(divMatrixA);
     const valuesMatrixB = getMatrixValues(divMatrixB);
-    
 
+    //const operation = selectOperation.options[selectOperation.selectedIndex].text;
+    const operation = selectOperation.selectedIndex;
+    if (selectOperation.selectedIndex == 0) { // A + B
+        showResults(calculateSum(valuesMatrixA, valuesMatrixB));
 
+    } else if (selectOperation.selectedIndex == 1) { // AB
+        showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
+
+    } else if (selectOperation.selectedIndex == 2) { // BA
+        showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
+
+    } 
+    // add more operations ...
+
+}, { once: true })
+
+function showResults(resultValues) {
+    console.log(resultValues);
 }
 
 /**
@@ -62,11 +74,11 @@ function calculate() {
  */
 function getMatrixValues(matrixElem) {
     const matrix = matrixElem.children[0];
-    let matrixValues = [];
+    let matrixValues = new Array();
 
     for (let index = 0; index < matrix.childElementCount; index++)
     {
-        let row = [];
+        let row = new Array();
         for (let j = 0; j < matrix.children[0].childElementCount; j++) {
             row.push(
                 parseInt(matrix.children[index].children[j].children[0].value)
@@ -77,4 +89,3 @@ function getMatrixValues(matrixElem) {
 
     return matrixValues;
 }
-
