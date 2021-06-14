@@ -21,7 +21,7 @@ document.getElementById("btngenerateValuesInputInterface")
     sessionStorage.setItem("size_n_B", sizeN_B.value);
 }, { once: true });
 
-function generateValuesInputInterface(divMatrix, mSize, nSize) {
+function generateValuesInputInterface(divMatrix, mSize, nSize, matrixValues = null) {
     const M = parseInt(mSize);   // rows
     const N = parseInt(nSize);   // columns
     const table = document.createElement("table");
@@ -33,7 +33,11 @@ function generateValuesInputInterface(divMatrix, mSize, nSize) {
         for (let j = 0; j < N; j++) {
             const column = document.createElement("th");
             const input = document.createElement("input")
-            input.value = 0;
+            if (matrixValues != null) {
+                input.value = matrixValues[i][j];
+            } else {
+                input.value = 0;
+            }
             input.type = "number"
             input.classList.add("valuesMatrixInput");
             column.appendChild(input)
@@ -41,8 +45,11 @@ function generateValuesInputInterface(divMatrix, mSize, nSize) {
         }
         table.appendChild(row);
     }
-    
     divMatrix.appendChild(table)
+
+    if (matrixValues != null) {
+        document.getElementById("paragraphResult").style.display = "block";
+    }
 }
 
 document.getElementById("btnCalculate").addEventListener("click", (event) => {
@@ -50,17 +57,25 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
     const valuesMatrixA = getMatrixValues(divMatrixA);
     const valuesMatrixB = getMatrixValues(divMatrixB);
 
-    //const operation = selectOperation.options[selectOperation.selectedIndex].text;
-    const operation = selectOperation.selectedIndex;
     if (selectOperation.selectedIndex == 0) { // A + B
-        showResults(calculateSum(valuesMatrixA, valuesMatrixB));
+
+        if (valuesMatrixA.length != valuesMatrixB.length ||
+            valuesMatrixA[0].length != valuesMatrixB[0].length) {
+            alert("La operacion no se puede realizar, las matrices son de distinta dimensión")
+        } else {
+            const divResult = document.getElementsByClassName("result")[0];
+            const resultMatrix = calculateSum(valuesMatrixA, valuesMatrixB);
+            const M = valuesMatrixA.length;
+            const N = valuesMatrixA[0].length;
+            generateValuesInputInterface(divResult, M, N, resultMatrix);
+
+        }
 
     } else if (selectOperation.selectedIndex == 1) { // AB
         showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
 
     } else if (selectOperation.selectedIndex == 2) { // BA
         showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
-
     } 
     // add more operations ...
 
@@ -68,6 +83,9 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
 
 function showResults(resultValues) {
     console.log(resultValues);
+    
+    generateValuesInputInterface(divResult, )
+
 }
 
 /**
