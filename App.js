@@ -65,28 +65,19 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
         } else {
             const divResult = document.getElementsByClassName("result")[0];
             const resultMatrix = calculateSum(valuesMatrixA, valuesMatrixB);
-            const M = valuesMatrixA.length;
-            const N = valuesMatrixA[0].length;
-            generateValuesInputInterface(divResult, M, N, resultMatrix);
-
+            generateValuesInputInterface(divResult, valuesMatrixA.length, 
+                valuesMatrixA[0].length, resultMatrix);
         }
 
     } else if (selectOperation.selectedIndex == 1) { // AB
-        showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
+        // showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
 
     } else if (selectOperation.selectedIndex == 2) { // BA
-        showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
+        // showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
     } 
     // add more operations ...
 
 }, { once: true })
-
-function showResults(resultValues) {
-    console.log(resultValues);
-    
-    generateValuesInputInterface(divResult, )
-
-}
 
 /**
  * @param matrix as [object HTMLDivElement]
