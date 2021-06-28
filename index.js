@@ -70,7 +70,12 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
         }
 
     } else if (selectOperation.selectedIndex == 1) { // AB
-        // showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
+        if (valuesMatrixA[0].length === valuesMatrixB.length) {
+            calculateProduct(valuesMatrixA, valuesMatrixB)
+            // showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
+        } else {
+            alert("No se puede efectuar el producto de AxB");
+        }
 
     } else if (selectOperation.selectedIndex == 2) { // BA
         // showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
