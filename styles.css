@@ -30,3 +30,11 @@
 }
 
 #paragraphResult { display:none }
+
+.result {
+    margin-block-end: 60px;
+}
+
+nav {
+    margin-block-end: 30px;
+}

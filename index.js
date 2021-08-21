@@ -1,13 +1,12 @@
 const divMatrixA = document.getElementsByClassName("matrixA")[0]
 const divMatrixB = document.getElementsByClassName("matrixB")[0]
 const selectOperation = document.getElementById("operation")
+const divResult = document.getElementsByClassName("result")[0];
 
 const sizeM_A = document.getElementsByClassName("sizeM_matrixA")[0]
 const sizeM_B = document.getElementsByClassName("sizeM_matrixB")[0]
 const sizeN_A = document.getElementsByClassName("sizeN_matrixA")[0]
 const sizeN_B = document.getElementsByClassName("sizeN_matrixB")[0]
-
-// addEventListener("load", (event) => { })
 
 document.getElementById("btngenerateValuesInputInterface")
 .addEventListener("click", (event) => {
@@ -56,6 +55,7 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
     event.preventDefault();
     const valuesMatrixA = getMatrixValues(divMatrixA);
     const valuesMatrixB = getMatrixValues(divMatrixB);
+    let result = null;
 
     if (selectOperation.selectedIndex == 0) { // A + B
 
@@ -63,31 +63,29 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
             valuesMatrixA[0].length != valuesMatrixB[0].length) {
             alert("La operacion no se puede realizar, las matrices son de distinta dimensión")
         } else {
-            const divResult = document.getElementsByClassName("result")[0];
-            const resultMatrix = calculateSum(valuesMatrixA, valuesMatrixB);
-            generateValuesInputInterface(divResult, valuesMatrixA.length, 
-                valuesMatrixA[0].length, resultMatrix);
+            result = MatrixOperations.calculateSum(valuesMatrixA, valuesMatrixB);            
         }
 
     } else if (selectOperation.selectedIndex == 1) { // AB
         if (valuesMatrixA[0].length === valuesMatrixB.length) {
-            calculateProduct(valuesMatrixA, valuesMatrixB)
-            // showResults(calculateAxB(valuesMatrixA, valuesMatrixB));
+            result = MatrixOperations.calculateProduct(valuesMatrixA, valuesMatrixB)
         } else {
             alert("No se puede efectuar el producto de AxB");
         }
 
     } else if (selectOperation.selectedIndex == 2) { // BA
-        // showResults(calculateAxB(valuesMatrixB, valuesMatrixA));
-    } 
+        result = MatrixOperations.calculateProduct(valuesMatrixB, valuesMatrixA)
+    }
     // add more operations ...
+
+    generateValuesInputInterface(divResult, result.length, result[0].length, result);
 
 }, { once: true })
 
 /**
  * @param matrix as [object HTMLDivElement]
  */
-function getMatrixValues(matrixElem) {
+const getMatrixValues = (matrixElem) => {
     const matrix = matrixElem.children[0];
     let matrixValues = new Array();
 
