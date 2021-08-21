@@ -57,6 +57,12 @@ document.getElementById("btnCalculate").addEventListener("click", (event) => {
     const valuesMatrixB = getMatrixValues(divMatrixB);
     let result = null;
 
+    // let func = [MatrixOperations.calculateSum, MatrixOperations.calculateProduct, 
+    //     MatrixOperations.calculateProduct, MatrixOperations.calculateDeterminantOfMatrix2x2]
+
+    // let result = func[selectOperation.selectedIndex](valuesMatrixA, valuesMatrixB)
+    // generateValuesInputInterface(divResult, result.length, result[0], result)
+
     if (selectOperation.selectedIndex == 0) { // A + B
 
         if (valuesMatrixA.length != valuesMatrixB.length ||
